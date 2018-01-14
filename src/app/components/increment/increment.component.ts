@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-increment',
@@ -9,6 +10,8 @@ export class IncrementComponent implements OnInit {
 
   @Input('nombrepersonalizado') legend: string = 'Leyenda'; //Hacer esto no es una buena práctica por eso el error del linter, pero es un buen recurso cuando los nombres elegidos para las propiedades no son los mas correctos.
   @Input() progress: number = 50;
+
+  @Output() changeVal: EventEmitter<number> = new EventEmitter();
 
   constructor() {
     console.log('LEYENDA', this.legend);
@@ -31,6 +34,8 @@ export class IncrementComponent implements OnInit {
 
     this.progress = this.progress + val;
     console.log(`progreess = ${this.progress}`);
+
+    this.changeVal.emit(this.progress);
   }
 
 }
