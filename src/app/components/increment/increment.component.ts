@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, ElementRef } from '@angular/core';
+
 
 
 @Component({
@@ -13,9 +14,11 @@ export class IncrementComponent implements OnInit {
 
   @Output() changeVal: EventEmitter<number> = new EventEmitter();
 
+  @ViewChild('txtProgress') txtProgress: ElementRef;
+
   constructor() {
-    console.log('LEYENDA', this.legend);
-    console.log('PROGRESS', this.progress);
+    // console.log('LEYENDA', this.legend);
+    // console.log('PROGRESS', this.progress);
    }
 
   ngOnInit() {
@@ -34,6 +37,28 @@ export class IncrementComponent implements OnInit {
 
     this.progress = this.progress + val;
     console.log(`progreess = ${this.progress}`);
+
+    this.changeVal.emit(this.progress);
+    this.txtProgress.nativeElement.focus();
+  }
+
+  onChanges(newValue) {
+    console.log(newValue);
+
+    // let elemHTML: any = document.getElementsByName('progress')[0];
+    // console.log(elemHTML);
+
+    this.txtProgress.nativeElement.value = this.progress;
+
+    if ( newValue >= 100 ) {
+      this.progress = 100;
+    } else if ( newValue <= 0 ) {
+      this.progress = 0;
+    } else {
+      this.progress = newValue;
+    }
+
+    // elemHTML.value = Number (this.progress);
 
     this.changeVal.emit(this.progress);
   }
