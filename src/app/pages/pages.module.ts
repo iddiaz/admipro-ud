@@ -18,6 +18,7 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
 
 // Temporal
 import { IncrementComponent } from '../components/increment/increment.component';
+import { PromesasComponent } from './promesas/promesas.component';
 
 
 
@@ -34,7 +35,8 @@ import { IncrementComponent } from '../components/increment/increment.component'
     ProgressComponent,
     Graficas1Component,
     IncrementComponent,
-    GraficoDonaComponent
+    GraficoDonaComponent,
+    PromesasComponent
 
   ],
   exports: [
